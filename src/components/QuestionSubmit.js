@@ -34,7 +34,7 @@ class QuestionSubmit extends Component {
                 <h4 className='question-title'>Would you rather?</h4>
                 <div className='answer-select'>
                     <Form>
-                        <Form.Group as={Row} className="mb-3">
+                        <Form.Group className="mb-3">
                             <Form.Check
                                 className='checkBox'
                                 type='radio'
@@ -46,7 +46,7 @@ class QuestionSubmit extends Component {
                                 name='answerGroup'
                             />
                         </Form.Group>
-                        <Form.Group as={Row} className="mb-3">
+                        <Form.Group className="mb-3">
                             <Form.Check
                                 className='checkBox'
                                 type='radio'
