@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 
