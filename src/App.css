@@ -1,38 +1,273 @@
-.App {
+* {
+  user-select: none;
+  scroll-behavior: smooth;
+}
+
+.app-container {
+  margin-top: 2em;
+}
+
+.app-nav {
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-link.nav.active {
+  color: #fff !important;
+}
+
+.nav-avatar {
+  background: #eee;
+  margin: 0 10px;
+  border: 1px solid gray;
+}
+
+.user-name {
+  color: #666
+}
+
+.user-avatar-select {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-avatar-select>li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  line-height: 60px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  margin: 6px 0;
+}
+
+.user-avatar-select>li:hover {
+  transition: background 0.2s linear;
+  background: rgb(85, 151, 96, 0.2);
+  cursor: pointer;
+}
+
+.user-avatar-select>li.selected {
+  transition: background 0.2s linear;
+  border-color: rgb(85, 151, 96, 0.5);
+  background: rgb(85, 151, 96);
+  color: #fff;
+  border-width: 2px;
+}
+
+.card-actions {
+  padding-top: 0.5em;
+}
+
+.questions-container {
+  min-width: 500px;
+  max-width: 100%;
+  padding-bottom: 6em;
+}
+
+.questions-container>.card {
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.score-card {
+  min-width: 600px;
+  max-width: 100%;
+  padding-bottom: 1.5em;
+}
+
+.score-card .card {
+  overflow: hidden;
+}
+
+.score-rank {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50px;
+  width: 80px;
   text-align: center;
+  line-height: 65px;
+  margin-top: -14px;
+  margin-left: -29px;
+  color: #fff;
+  font-size: 14px;
+  transform: rotate(-45deg);
+  font-weight: 700;
+  background: #cd7f32;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.score-rank.first {
+  background: gold;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.score-rank.second {
+  background: silver;
+  color: #333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.question-card {
+  min-width: 600px;
+  margin: 1em 0;
+}
+
+.question-avatar-container {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid lightgray;
+  min-width: 120px;
+}
+
+.question-title {
+  margin-bottom: 1.5em;
+}
+
+.answer-select {
+  padding: 0 16px;
+}
+
+.checkBox {
+  padding: 4px 0;
+}
+
+.result {
+  position: relative;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px lightgray solid;
+  margin-bottom: 1em;
+}
+
+.result.more {
+  background: rgba(85, 151, 96, 0.2);
+  border-color: rgb(85, 151, 96);
+  color: rgb(41, 80, 48);
+}
+
+.result .result-bar {
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px rgb(85, 151, 96) solid;
+  margin: 0.44em 0;
+  height: 32px;
+}
+
+.result .result-bar .bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background: rgb(85, 151, 96);
+  color: #fff;
+}
+
+.result .result-bar .bar span {
+  position: absolute;
+  right: 0;
+  margin: 0 0.5em;
+}
+
+.result .your-answer {
+  display: none;
+  position: absolute;
+  top: 0;
+  margin-top: -14px;
+  right: 0;
+  margin-right: 6px;
+  padding: 2px 8px;
+  background: goldenrod;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.result.answer {
+  padding-top: 0.8em;
+  margin-top: 1.5em;
+}
+
+.result.answer .your-answer {
+  display: block;
+}
+
+.divider {
+  display: flex;
+  height: 36px;
+}
+
+.divider hr {
+  flex: 1 1 auto;
+  margin: 0 8px;
+  margin-top: 12px;
+}
+
+.score-card .card {
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.score-details {
+  margin-top: 2em;
+}
+
+.score-details h6 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.score-total {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-left: 1px solid lightgray;
 }
 
-.App-link {
-  color: #61dafb;
+.score-total span {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 25px;
+  background: rgb(85, 151, 96);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.score-total h5 {
+  margin: 6px 0;
+}
+
+.animated-avatars {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  border: 1px gray solid;
+  animation: signinAvatar 0.3s both infinite;
+}
+
+@keyframes signinAvatar {
+  0% {
+    background: url('https://robohash.org/lolo?size=100x100') center center no-repeat
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    background: url('https://robohash.org/fofo?size=100x100') center center no-repeat
+  }
+
+  100% {
+    background: url('https://robohash.org/koko?size=100x100') center center no-repeat
   }
 }
