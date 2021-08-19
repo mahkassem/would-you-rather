@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Question from '../components/Question'
 import { connect } from 'react-redux'
+import NotFound from '../components/NotFound'
+import { Route } from 'react-router-dom'
 
 class QuestionPage extends Component {
     getQuestionId = () => {
@@ -11,6 +13,11 @@ class QuestionPage extends Component {
     }
     render() {
         const { question } = this.props
+        if(!question) {
+            return (
+                <Route component={NotFound} />
+            )
+        }
         return (
             <Container className='app-container'>
                 <Row className="justify-content-center">
@@ -24,9 +31,9 @@ class QuestionPage extends Component {
 }
 
 function mapStateToProps({ questions }, props) {
-    const { id } = props.match.params
+    const { question_id } = props.match.params
     return {
-        question: questions[id]
+        question: questions[question_id]
     }
 }
 

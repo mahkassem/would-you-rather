@@ -7,22 +7,31 @@ import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import { setAuthedUser } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 
 class Signin extends Component {
     state = {
         id: null,
+        from: null
     }
 
     handleSelectUser = (key) => {
         this.setState({ id: key })
     }
 
-    /**TODO: signin the selected user */
+    /**TODO: signin the selected user
+     * and redirect to intended location */
     handleLogin = (e) => {
         e.preventDefault()
         const { dispatch } = this.props
-        const { id } = this.state
+        const { id, from } = this.state
         dispatch(setAuthedUser(id))
+        this.props.history.push(from);
+    }
+
+    componentDidMount() {
+        const { from } = this.props.location.state || { from: { pathname: '/' } }
+        this.setState({ from: from.pathname })
     }
 
     render() {
@@ -62,10 +71,11 @@ class Signin extends Component {
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     return {
-        users: Object.values(users)
+        users: Object.values(users),
+        authedUser: authedUser
     }
 }
 
-export default connect(mapStateToProps)(Signin)
+export default withRouter(connect(mapStateToProps)(Signin))

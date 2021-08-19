@@ -2,7 +2,7 @@ import './App.css'
 import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import { Fragment } from 'react';
-import { Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import AppNav from './components/AppNav'
 import HomePage from './pages/HomePage'
 import Signin from './components/Signin';
@@ -13,8 +13,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import LoadingBar from 'react-redux-loading'
 import ProtectedRoute from './components/ProtectedRoute';
-
-
+import NotFound from './components/NotFound';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -24,18 +23,19 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
+          <LoadingBar style={{backgroundColor: 'rgb(56, 201, 80)'}}/>
           {!this.props.loading &&
             <div>
               <AppNav />
               <Container>
-                <Route path='/login'>
-                  {this.props.authedUser ? <Redirect to='/' /> : <Signin />}
-                </Route>
-                <ProtectedRoute exact path='/' component={HomePage} />
-                <ProtectedRoute path='/new' component={NewQuestion} />
-                <ProtectedRoute path='/question/:id' component={QuestionPage} />
-                <ProtectedRoute path='/leader-board' component={LeaderBoardPage} />
+                <Switch>
+                  <ProtectedRoute exact path='/' component={HomePage} loading />
+                  <ProtectedRoute path='/add' component={NewQuestion} />
+                  <ProtectedRoute path='/question/:question_id' component={QuestionPage} />
+                  <ProtectedRoute path='/leaderboard' component={LeaderBoardPage} />
+                  <Route path='/login' component={Signin} />
+                  <Route component={NotFound} />
+                </Switch>
               </Container>
             </div>}
         </Fragment>

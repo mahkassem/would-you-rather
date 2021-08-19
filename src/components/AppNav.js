@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -13,11 +13,11 @@ class AppNav extends Component {
     handleLogout = () => {
         const { dispatch } = this.props
         dispatch(unsetAuthedUser())
+        this.props.history.push('/login')
     }
 
     render() {
         const { authedUser, users } = this.props
-
         return (
             <Navbar className='app-nav' expand='lg'>
                 <Container>
@@ -26,8 +26,8 @@ class AppNav extends Component {
                     <Navbar.Collapse>
                         <Nav variant="pills" defaultActiveKey='/'>
                             <NavLink to='/' exact={true} activeClassName='active' className='nav-link nav'>Home</NavLink>
-                            <NavLink to='/new' activeClassName='active' className='nav-link nav'>New Question</NavLink>
-                            <NavLink to='/leader-board' activeClassName='active' className='nav-link nav'>Leader Board</NavLink>
+                            <NavLink to='/add' activeClassName='active' className='nav-link nav'>New Question</NavLink>
+                            <NavLink to='/leaderboard' activeClassName='active' className='nav-link nav'>Leader Board</NavLink>
                         </Nav>
                         <span className='spacer'></span>
                         {authedUser &&
@@ -60,4 +60,4 @@ function mapStateToProps({ authedUser, users }) {
     }
 }
 
-export default connect(mapStateToProps)(AppNav)
+export default withRouter(connect(mapStateToProps)(AppNav))

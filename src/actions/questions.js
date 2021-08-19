@@ -56,6 +56,5 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
         })
             .then((question) => dispatch(addQuestion(question), linkQuestion(question.id, question.author)))
             .then(() => dispatch(hideLoading()))
-
     }
 }

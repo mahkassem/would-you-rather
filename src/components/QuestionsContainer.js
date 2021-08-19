@@ -18,7 +18,6 @@ class QuestionContainer extends Component {
      * or answered questions
      */
     handleQuestionNav = (id) => {
-        console.log(id);
         this.props.history.push(`/question/${id}`);
     }
     /**TODO: determine if question is
